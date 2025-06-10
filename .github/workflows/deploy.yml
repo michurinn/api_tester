@@ -1,0 +1,47 @@
+name: Deploy Flutter Web to Firebase Hosting
+
+on:
+  push:
+    branches: [ main ] # or your preferred branch
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.x' # specify your Flutter version
+        channel: 'stable'
+
+    - run: flutter pub get
+    - run: flutter test
+    - run: flutter build web --release
+
+    - name: Archive production artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: web-build
+        path: build/web
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Download build artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: web-build
+        path: build/web
+
+    
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./build/web

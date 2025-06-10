@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:new_flutter_template/src/localization/app_localizations.dart';
 import 'package:new_flutter_template/src/navigator/navigation_state.dart';
 import 'package:new_flutter_template/src/navigator/router.dart';
 import 'package:new_flutter_template/src/theme/app_colors.dart';
