@@ -3,8 +3,8 @@ name: Deploy Flutter Web to Github Pages
 on:
   push:
     branches: [ main ] # or your preferred branch
-  pull_request:
-    branches: [ main ]
+  #pull_request:
+   # branches: [ main ]
 
 jobs:
   build:
