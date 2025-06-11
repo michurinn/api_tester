@@ -3,8 +3,8 @@ name: Deploy Flutter Web to Github Pages
 on:
   push:
     branches: [ main ] # or your preferred branch
-  pull_request:
-    branches: [ main ]
+  #pull_request:
+   # branches: [ main ]
 
 jobs:
   build:
@@ -20,7 +20,7 @@ jobs:
 
     - run: flutter pub get
     - run: flutter test
-    - run: flutter build web --release
+    - run: flutter build web --release --base-href /api_tester/
 
     - name: Archive production artifacts
       uses: actions/upload-artifact@v4
