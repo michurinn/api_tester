@@ -47,7 +47,7 @@ class _BasicAuthWidgetState extends State<BasicAuthWidget> {
                   .call(newUser, _passwordController.value.text),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 16,
           ),
           Expanded(

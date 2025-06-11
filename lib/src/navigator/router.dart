@@ -13,7 +13,7 @@ import 'package:http/http.dart' as http;
 class AppRouter extends RouterDelegate<NavigationState>
     with PopNavigatorRouterDelegateMixin, ChangeNotifier {
   final NavigationState state;
-  final GlobalKey<NavigatorState>? _navigatorKey = GlobalKey();
+  final GlobalKey<NavigatorState> _navigatorKey = GlobalKey();
 
   AppRouter({required this.state});
 

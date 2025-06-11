@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_client_sse/constants/sse_request_type_enum.dart';
 import 'package:new_flutter_template/src/navigator/router.dart';
