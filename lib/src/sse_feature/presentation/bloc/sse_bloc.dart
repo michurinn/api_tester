@@ -105,4 +105,10 @@ class SseBloc extends Bloc<SseEvent, SseState> {
     }
     super.onChange(change);
   }
+
+  @override
+  void onEvent(SseEvent event) {
+    log(event.toString(), name: 'SseEvent');
+    super.onEvent(event);
+  }
 }

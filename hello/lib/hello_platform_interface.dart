@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+import 'package:hello/hello_web.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 import 'hello_method_channel.dart';
@@ -28,6 +30,13 @@ abstract class HelloPlatform extends PlatformInterface {
   }
 
   Future<bool?> checkNetworkConnectionStatus() {
-    throw UnimplementedError('checkNetworkConnectionStatus() has not been implemented.');
+    throw UnimplementedError(
+        'checkNetworkConnectionStatus() has not been implemented.');
+  }
+
+  static void registerWithWeb() {
+    if (kIsWeb) {
+      instance = HelloWeb();
+    }
   }
 }

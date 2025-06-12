@@ -1,6 +1,8 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:hello/hello_method_channel.dart';
+import 'package:hello/hello_platform_interface.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -33,7 +35,7 @@ class HttpRequestFeatureBloc
   }
 
   /// The method for checking Internet connection active status
-  final MethodChannelHello internetConnectionChannel;
+  final HelloPlatform internetConnectionChannel;
 
   final http.Client client;
 
@@ -141,7 +143,8 @@ class HttpRequestFeatureBloc
           ),
         )}'
       };
-      if (await internetConnectionChannel.checkNetworkConnectionStatus() ==
+      final res = await internetConnectionChannel.checkNetworkConnectionStatus();
+      if ( res ==
           false) {
         emit(
           APIError(
@@ -316,5 +319,11 @@ class HttpRequestFeatureBloc
       change.toString(),
     );
     super.onChange(change);
+  }
+
+  @override
+  void onEvent(HttpRequestEvent event) {
+    log(event.toString(), name: 'HttpRequestEvent');
+    super.onEvent(event);
   }
 }
