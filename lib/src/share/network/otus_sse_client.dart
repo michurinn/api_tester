@@ -2,6 +2,7 @@ library flutter_client_sse;
 
 import 'dart:async';
 import 'dart:convert';
+import 'dart:developer';
 import 'package:flutter_client_sse/constants/sse_request_type_enum.dart';
 import 'package:flutter_client_sse/flutter_client_sse.dart';
 import 'package:http/http.dart' as http;
@@ -61,6 +62,11 @@ class OtusSSEClient {
         if (body != null) {
           request.body = jsonEncode(body);
         }
+
+        final testRes = _client.get(uri);
+        testRes.asStream().listen(
+              (event) => log(event.toString(), name: 'Sse message event'),
+            );
 
         Future<http.StreamedResponse> response = _client.send(request);
 
@@ -128,6 +134,9 @@ class OtusSSEClient {
               },
             );
         }, onError: (e, s) {
+          log(e.toString(), name: 'SSe error');
+          /// TODO(me): change it here
+          return;
           _retryConnection(
             method: method,
             uri: uri,

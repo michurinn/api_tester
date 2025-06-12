@@ -49,11 +49,13 @@ class SseView extends StatelessWidget {
                     if (uri != null && !uri.isValid) {
                       debugPrint('${_controller.value.text} is not valid text');
                     } else {
+                      final resultUri = Uri.https(
+                          uri!.authority, uri.path, uri.queryParameters);
                       try {
                         context.read<SseBloc>().add(
                               SseSubscribeEvent(
                                 sseRequestType: SSERequestType.GET,
-                                uri: uri!,
+                                uri: resultUri,
                                 header: {},
                               ),
                             );

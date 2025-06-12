@@ -1,6 +1,8 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hello/hello_method_channel.dart';
+import 'package:hello/hello_web.dart';
 import 'package:new_flutter_template/src/http_request_feature/presentation/bloc/http_request_feature_bloc.dart';
 import 'package:new_flutter_template/src/navigator/navigation_state.dart';
 import 'package:new_flutter_template/src/http_request_feature/presentation/pages/http_view.dart';
@@ -58,7 +60,7 @@ class AppRouter extends RouterDelegate<NavigationState>
             child: BlocProvider<HttpRequestFeatureBloc>(
               create: (context) => HttpRequestFeatureBloc(
                 client: http.Client(),
-                internetConnectionChannel: MethodChannelHello(),
+                internetConnectionChannel:   kIsWeb ?   HelloWeb() : MethodChannelHello(),
               ),
               child: const HttpRequestView(),
             ),

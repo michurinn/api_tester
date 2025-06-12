@@ -15,7 +15,13 @@ class SseRepository implements ISseRepository {
     return OtusSSEClient.subscribeToSSE(
       method: type,
       uri: uri,
-      header: header,
+      header: header
+        ..addAll({
+          "Accept": "*/*",
+          "Cache-Control": "no-cache",
+          "Access-Control-Allow-Origin": "*",
+          "Connection": "keep-alive"
+        }),
     );
   }
 
