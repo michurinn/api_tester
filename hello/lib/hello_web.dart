@@ -1,5 +1,5 @@
 // lib/src/hello_web.dart
-import 'dart:html' as html;
+import 'package:web/web.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:hello/hello_platform_interface.dart';
 
@@ -11,12 +11,12 @@ class HelloWeb extends HelloPlatform {
 
   @override
   Future<String?> getPlatformVersion() async {
-    return 'Web ${html.window.navigator.userAgent}';
+    return 'Web ${window.navigator.userAgent}';
   }
 
   @override
   Future<bool?> checkNetworkConnectionStatus() async {
-    final st = html.window.navigator.onLine;
-    return html.window.navigator.onLine;
+    final st = window.navigator.onLine;
+    return window.navigator.onLine;
   }
 }
